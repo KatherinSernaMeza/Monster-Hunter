@@ -1,18 +1,16 @@
-import { display } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { CircularProgress } from "@mui/material";
 import monsterImg from "../assets/monster.png";
 
 const Description = () => {
   const [monster, setMonster] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  let { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const getMonster = async (id) => {
-    console.log("id: ", id);
     setLoading(true);
     setError(false);
     try {
@@ -20,7 +18,6 @@ const Description = () => {
       setMonster(response.data);
     } catch {
       console.error(error);
-      console.log(error);
     }
     setLoading(false);
   };
@@ -36,8 +33,8 @@ const Description = () => {
   };
 
   const listLocations = () => {
-    return monster.locations.map((weakness, id) => (
-      <p key={id}> {weakness.name}</p>
+    return monster.locations.map((location) => (
+      <p key={location.id}> {location.name}</p>
     ));
   };
 
@@ -46,7 +43,7 @@ const Description = () => {
       <h1>Monster</h1>
       <div>
         {loading ? (
-          <p>Esta cargando..</p>
+          <CircularProgress />
         ) : (
           <div>
             <div style={{ display: "flex" }}>

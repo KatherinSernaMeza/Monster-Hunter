@@ -22,15 +22,41 @@ const Layout = () => {
               >
                 Home
               </Link>
-              <Link to="/monsters" style={{ color: "white" }}>
+              <Link
+                to="monsters"
+                style={{
+                  color: "white",
+                  paddingRight: "30px",
+                  paddingLeft: "30px",
+                }}
+              >
                 Monsters
+              </Link>
+              <Link
+                to="locations"
+                style={{
+                  color: "white",
+                  paddingRight: "30px",
+                  paddingLeft: "30px",
+                }}
+              >
+                Locations
+              </Link>
+              <Link
+                to="armors"
+                style={{
+                  color: "white",
+                  paddingRight: "30px",
+                  paddingLeft: "30px",
+                }}
+              >
+                Armors
               </Link>
             </>
           }
         </Toolbar>
       </AppBar>
       <Outlet />
-      {/* <div>Layout</div> <Outlet /> */}
     </>
   );
 };

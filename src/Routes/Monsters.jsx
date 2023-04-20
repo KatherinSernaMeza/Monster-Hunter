@@ -13,9 +13,8 @@ const Monsters = () => {
     try {
       const result = await axios.get("https://mhw-db.com/monsters");
       setMonsters(result.data);
-      console.log(result.data, "result");
     } catch {
-      console.error.log();
+      console.error(error);
       setError(true);
     }
     setLoading(false);
@@ -35,7 +34,7 @@ const Monsters = () => {
           <div key={monster.id}>
             <div style={{ display: "flex" }} className="ItemMonster">
               <p style={{ paddingRight: "20px" }}>
-                <strong style={{ paddingRight: "10px" }}>Nombre :</strong>
+                <strong style={{ paddingRight: "10px" }}>Name :</strong>
                 <Link to={`/${monster.id}`}>{monster.name}</Link>
               </p>
               <p style={{ paddingRight: "20px" }}>
