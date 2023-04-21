@@ -51,7 +51,10 @@ const Description = () => {
                 {" "}
                 <img style={{ width: "100%" }} src={monsterImg} alt="Logo" />
               </div>
-              <div className="descriptionMonster" style={{ width: "50%" }}>
+              <div
+                className="descriptionMonster"
+                style={{ width: "50%", textAlign: "left" }}
+              >
                 <p>
                   <strong>Nombre:</strong>
                   {monster.name}

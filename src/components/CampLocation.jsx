@@ -7,15 +7,15 @@ const CampLocation = ({ camps }) => {
       {camps.length == 0 ? (
         <p>No hay camps.</p>
       ) : (
-        camps.map((camp) => (
-          <ul key={camp.id}>
-            <li>
+        <ul>
+          {camps.map((camp) => (
+            <li key={camp.id}>
               <strong>Name: </strong> {camp.name}{" "}
               <strong style={{ paddingLeft: "20px" }}>Zone: </strong>
               {camp.zone}
             </li>
-          </ul>
-        ))
+          ))}
+        </ul>
       )}
     </>
   );

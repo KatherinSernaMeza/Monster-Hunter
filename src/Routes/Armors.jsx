@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import TableArmors from "../components/TableArmors";
 
@@ -14,7 +13,6 @@ const Armors = () => {
     setError(false);
     try {
       const response = await axios("https://mhw-db.com/armor/sets");
-      console.log(response.data.flat(), "response.data.flat()");
       setArmors(response.data.flat());
     } catch {
       console.error(error);
@@ -29,13 +27,8 @@ const Armors = () => {
 
   return (
     <div style={{ paddingTop: "50px" }}>
+      <h1>Armors</h1>
       {loading ? <CircularProgress /> : <TableArmors armors={armors} />}
-
-      {/* armors.map((armor) => (
-          <div key={armor.id}>
-            <Link to={`${armor.id}`}>{armor.name}</Link> {armor.rank}
-          </div>
-        )) */}
     </div>
   );
 };

@@ -18,10 +18,6 @@ const LocationItem = ({ propLocation }) => {
   };
   const handleClose = () => setOpen(false);
 
-  const currentLocation = (camps) => {
-    setCamps(camps);
-  };
-
   return (
     <>
       <Box
@@ -44,7 +40,7 @@ const LocationItem = ({ propLocation }) => {
                 <LocationOnIcon style={{ color: "#8b6d2a" }} />
                 <ListItemButton>
                   <Link to={`${location.id}`}>
-                    <span style={{ color: "black" }}> Nombre: </span>
+                    <span style={{ color: "black" }}> Name: </span>
                     {location.name}
                     <span style={{ color: "black", paddingLeft: "10px" }}>
                       {" "}

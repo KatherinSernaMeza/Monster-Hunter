@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import ListPieceArmor from "../components/ListPieceArmor";
+import ArmorRank from "../components/ArmorRank";
 
 const Armor = () => {
   const [armor, setArmor] = useState({});
@@ -18,7 +20,6 @@ const Armor = () => {
       const response = await axios.get(
         "https://mhw-db.com/armor/sets/" + idArmor
       );
-      console.log(response.data);
       setArmor(response.data);
     } catch {
       console.error(error);
@@ -31,29 +32,34 @@ const Armor = () => {
   }, []);
   return (
     <div>
+      <h1>Armor</h1>
       {loading ? (
         <CircularProgress />
       ) : (
         <div>
-          {armor.name} {armor.rank}
-          {armor.pieces.map((piece) => (
-            <div key={piece.id}>
-              <p>
-                {piece.name} {piece.type} {piece.rank} {piece.rarity}{" "}
-                {piece.assets.imageMale}
-              </p>
-            </div>
-          ))}
+          <h1 style={{ textAlign: "left" }}> {armor.name}</h1>
+          <div style={{ display: "flex" }}>
+            <ArmorRank armor={armor} />
+          </div>
+          <ListPieceArmor armor={armor} />
         </div>
       )}
-      <button
-        style={{ backgroundColor: "#1976d2", color: "white" }}
-        onClick={() => {
-          navigate(-1);
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          marginLeft: "10px",
         }}
       >
-        Back
-      </button>
+        <button
+          style={{ backgroundColor: "#1976d2", color: "white" }}
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Back
+        </button>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-import Divider from "@mui/material/Divider";
+import LocationDetail from "../components/LocationDetail";
 
 const Location = () => {
   const [location, setLocation] = useState([]);
@@ -16,7 +16,7 @@ const Location = () => {
     setError(false);
     try {
       const response = await axios.get(
-        "https://mhw-db.com/locations/" + idLocation
+        `https://mhw-db.com/locations/${idLocation}`
       );
       setLocation(response.data);
     } catch {
@@ -32,40 +32,7 @@ const Location = () => {
 
   return (
     <div>
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <div>
-          <h1> {location.name}</h1>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>
-              <h2>
-                <Divider>Zone Count</Divider>
-              </h2>
-              <h2>
-                {location.zoneCount}
-                <Divider />
-              </h2>
-            </div>
-            <div>
-              <h3>Camps</h3>
-              {location.camps.length == 0 ? (
-                <p> 0</p>
-              ) : (
-                location.camps.map((camp) => (
-                  <div key={location.camps.id} style={{ textAlign: "left" }}>
-                    <ul>
-                      <li>
-                        {camp.name} {camp.zone}
-                      </li>
-                    </ul>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {loading ? <CircularProgress /> : <LocationDetail location={location} />}
       <div>
         <button
           style={{ backgroundColor: "#1976d2", color: "white" }}
